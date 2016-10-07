@@ -2,22 +2,25 @@ package forceEditor.input;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.*;
 
-public class Keyboard extends GLFWKeyCallback {
+public class Keyboard implements GLFWKeyCallbackI {
 
 	public static boolean[] keys = new boolean[65535];
-	
+
 	public static int lastKey;
 	public static int lastAction;
-	
-	@Override
+
 	public void invoke(long window, int key, int scancode, int action, int mods) {
-		keys[key] = action != GLFW_RELEASE;
+		if (key >= 65535 || key < 0) {
+			System.err.println("Unknown key registered.");
+		} else {
+			keys[key] = action != GLFW_RELEASE;
+		}
 		lastKey = key;
 		lastAction = action;
 	}
-	
+
 	public static boolean keyPressed(int key) {
 		if (lastKey == key && lastAction == GLFW_PRESS) {
 			resetKeys();
@@ -27,7 +30,7 @@ public class Keyboard extends GLFWKeyCallback {
 			return false;
 		}
 	}
-	
+
 	public static void resetKeys() {
 		lastKey = GLFW_KEY_UNKNOWN;
 		lastAction = GLFW_KEY_UNKNOWN;

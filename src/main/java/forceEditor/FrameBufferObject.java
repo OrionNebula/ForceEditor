@@ -6,7 +6,6 @@ import static org.lwjgl.opengl.GL11.*;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.opengl.GL14;
-import org.lwjgl.opengl.GLContext;
 
 public class FrameBufferObject
 {
@@ -14,8 +13,8 @@ public class FrameBufferObject
 	
 	public FrameBufferObject(int width, int height)
 	{
-		if(!GLContext.createFromCurrent().getCapabilities().GL_EXT_framebuffer_object)
-			throw new UnsupportedOperationException("This system does not support GL_EX_framebuffer_object");
+//		if(!GLContext.createFromCurrent().getCapabilities().GL_EXT_framebuffer_object) 
+//			throw new UnsupportedOperationException("This system does not support GL_EX_framebuffer_object");
 		
 		fboWidth = width;
 		fboHeight = height;

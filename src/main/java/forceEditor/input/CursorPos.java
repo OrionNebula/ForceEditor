@@ -1,11 +1,10 @@
 package forceEditor.input;
 
-import org.lwjgl.glfw.GLFWCursorPosCallback;
+import org.lwjgl.glfw.*;
 
-public class CursorPos extends GLFWCursorPosCallback {
+public class CursorPos implements GLFWCursorPosCallbackI {
 	public static int x, y;
 	
-	@Override
 	public void invoke(long window, double xpos, double ypos) {
 		x = (int) xpos;
 		y = (int) ypos;
